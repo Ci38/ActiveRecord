@@ -186,12 +186,13 @@ class todo extends model {
 
     public static $updateData = 'code';
 
-    public static $idOfCol = '3';
+    public static $idOfCol = '5';
 }
 
 
 
 echo "<h1><u> This is PHP ActiveRecord Assignment </u></h1>";
+echo "<h1>Select All Record</h1>";
 echo "<h2> Select all Records from accounts</h2>";
 $obj = new Account;
 $obj->save();
@@ -215,8 +216,31 @@ foreach($result as $row)
 }
 echo '</table><br><hr>';
 
+
+echo "<h2> Select all Records from todos</h2>";
+$obj = new todo;
+$obj->save();
+$obj =  todos::create();
+$result = $obj -> findAll();
+echo '<table border="1" cellspacing="1" cellpadding="1">';
+echo '<tr><th>ID</th><th>Owneremail</th><th>ownerid</th><th>createddate</th><th>duedate</th><th>message</th><th>isdone</th></tr>';
+foreach($result as $row)
+{
+    echo '<tr>';
+    echo '<td>'.$row->id.'</td>';
+    echo '<td>'.$row->owneremail.'</td>';
+    echo '<td>'.$row->ownerid.'</td>';
+    echo '<td>'.$row->createddate.'</td>';
+    echo '<td>'.$row->duedate.'</td>';
+    echo '<td>'.$row->message.'</td>';
+    echo '<td>'.$row->isdone.'</td>';
+    echo '</tr>';
+}
+echo '</table><br><hr>';
+
+echo "<h1> Select One Record</h1>";
 echo "<h2> Select one record from accounts</h2>";
-echo "<h3> Record selected having id=7 </h3><br>";
+echo "<h3> Record selected having id=7 from accounts </h3><br>";
 $obj =  accounts::create();
 $result = $obj -> findOne(7);
 echo '<table border="1" cellspacing="1" cellpadding="1">';
@@ -237,7 +261,28 @@ foreach($result as $row)
 }
 echo '</table><br><hr>';
 
+echo "<h2> Select One Record from todos</h2>";
+echo "<h3> Record selected having id=3 from todos </h3><br>";
+$obj =  todos::create();
+$result = $obj -> findOne(3);
+echo '<table border="1" cellspacing="1" cellpadding="1">';
+echo '<tr><th>ID</th><th>Owneremail</th><th>ownerid</th><th>createddate</th><th>duedate</th><th>message</th><th>isdone</th></tr>';
+foreach($result as $row) {
 
+    echo '<tr>';
+    echo '<td>' . $row->id . '</td>';
+    echo '<td>' . $row->owneremail . '</td>';
+    echo '<td>' . $row->ownerid . '</td>';
+    echo '<td>' . $row->createddate . '</td>';
+    echo '<td>' . $row->duedate . '</td>';
+    echo '<td>' . $row->message . '</td>';
+    echo '<td>' . $row->isdone . '</td>';
+    echo '</tr>';
+}
+
+echo '</table><br><hr>';
+
+echo "<h1> Insert Record</h1>";
 echo "<h2> Insert new Record in table accounts</h2>";
 //echo "Inserted new Record<br><br>";
 $obj = new Account;
@@ -262,7 +307,31 @@ foreach($result as $row)
 }
 echo '</table><br><hr>';
 
+echo "<h2> Insert new Record in table todos</h2>";
+//echo "Inserted new Record<br><br>";
+$obj = new todo;
+$obj->save();
+$obj =  todos::create();
+$result = $obj -> findAll();
+echo '<table border="1" cellspacing="1" cellpadding="1">';
+echo '<tr><th>ID</th><th>Owneremail</th><th>ownerid</th><th>createddate</th><th>duedate</th><th>message</th><th>isdone</th></tr>';
+foreach($result as $row) {
 
+    echo '<tr>';
+    echo '<td>' . $row->id . '</td>';
+    echo '<td>' . $row->owneremail . '</td>';
+    echo '<td>' . $row->ownerid . '</td>';
+    echo '<td>' . $row->createddate . '</td>';
+    echo '<td>' . $row->duedate . '</td>';
+    echo '<td>' . $row->message . '</td>';
+    echo '<td>' . $row->isdone . '</td>';
+    echo '</tr>';
+}
+
+echo '</table><br><hr>';
+
+
+echo "<h1> Update Record</h1>";
 echo "<h2> Update record in table accounts</h2>";
 echo "updated lname = woodsen where id=6<br><br>";
 $obj = new Account;
@@ -287,6 +356,30 @@ foreach($result as $row)
 }
 echo '</table><br><hr>';
 
+echo "<h2> Update record in table todos</h2>";
+echo "updated messgae = code where id=3 <br><br>";
+$obj = new todo;
+$obj->save();
+$obj =  todos::create();
+$result = $obj -> findAll();
+echo '<table border="1" cellspacing="1" cellpadding="1">';
+echo '<tr><th>ID</th><th>Owneremail</th><th>ownerid</th><th>createddate</th><th>duedate</th><th>message</th><th>isdone</th></tr>';
+foreach($result as $row)
+{
+    echo '<tr>';
+    echo '<td>' . $row->id . '</td>';
+    echo '<td>' . $row->owneremail . '</td>';
+    echo '<td>' . $row->ownerid . '</td>';
+    echo '<td>' . $row->createddate . '</td>';
+    echo '<td>' . $row->duedate . '</td>';
+    echo '<td>' . $row->message . '</td>';
+    echo '<td>' . $row->isdone . '</td>';
+    echo '</tr>';
+}
+
+echo '</table><br><hr>';
+
+echo "<h1> Delete Record</h1>";
 echo "<h2> Delete record in table accounts</h2>";
 echo "Deleted record where id=9 from accounts<br>";
 $obj = new account;
@@ -311,4 +404,29 @@ foreach($result as $row)
     echo '<td>'.$row->password.'</td>';
     echo '</tr>';
 }
+echo '</table><br><hr>';
+
+echo "<h2> Delete record in table todos</h2>";
+echo "Deleted record where id=5 from todos<br>";
+$obj = new todo;
+$obj->save();
+echo '<br>';
+$obj->delete();
+$obj =  todos::create();
+$result = $obj -> findAll();
+echo '<table border="1" cellspacing="1" cellpadding="1">';
+echo '<tr><th>ID</th><th>Owneremail</th><th>ownerid</th><th>createddate</th><th>duedate</th><th>message</th><th>isdone</th></tr>';
+foreach($result as $row)
+{
+    echo '<tr>';
+    echo '<td>' . $row->id . '</td>';
+    echo '<td>' . $row->owneremail . '</td>';
+    echo '<td>' . $row->ownerid . '</td>';
+    echo '<td>' . $row->createddate . '</td>';
+    echo '<td>' . $row->duedate . '</td>';
+    echo '<td>' . $row->message . '</td>';
+    echo '<td>' . $row->isdone . '</td>';
+    echo '</tr>';
+}
+
 echo '</table><br><hr>';
